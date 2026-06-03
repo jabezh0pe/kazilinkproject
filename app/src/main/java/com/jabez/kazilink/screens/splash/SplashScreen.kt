@@ -1,6 +1,5 @@
 package com.jabez.kazilink.screens.splash
 
-import android.window.SplashScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,6 +9,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.size
+import androidx.compose.ui.text.font.Font
 import com.jabez.kazilink.R
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.material3.Text
@@ -19,9 +19,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.delay
+import com.jabez.kazilink.navigation.ROUTE_LOGIN
+
+val CourierPrime = FontFamily(
+    Font(R.font.courierprime_regular
+    )
+)
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(navController: androidx.navigation.NavHostController) {
+
+    LaunchedEffect(Unit) {
+        delay(3000)
+        navController.navigate(ROUTE_LOGIN)
+    }
 
     Column(
         modifier = Modifier
@@ -47,14 +60,14 @@ fun SplashScreen() {
 
         Text(
             text = "KaziLink",
-            fontFamily = FontFamily.Monospace,
+            fontFamily = CourierPrime,
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold
         )
 
         Text(
             text = "Connect. Task. Done.",
-            fontFamily = FontFamily.Monospace,
+            fontFamily = CourierPrime,
             fontSize = 16.sp
         )
     }

@@ -12,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jabez.kazilink.screens.splash.SplashScreen
+import com.jabez.kazilink.screens.login.LoginScreen
 import com.jabez.kazilink.ui.theme.KazilinkTheme
 import com.jabez.kazilink.screens.splash.SplashScreen
+import com.jabez.kazilink.navigation.AppNavHost
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +23,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KazilinkTheme {
-                SplashScreen()
+                AppNavHost()
                 }
             }
         }
