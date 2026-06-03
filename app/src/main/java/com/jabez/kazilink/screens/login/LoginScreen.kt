@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.jabez.kazilink.R
 import androidx.navigation.NavHostController
 import com.jabez.kazilink.navigation.ROUTE_FORGOT_PASSWORD
+import com.jabez.kazilink.navigation.ROUTE_REGISTER
 
 
 val CourierPrime = FontFamily(
@@ -107,7 +108,7 @@ fun LoginScreen(navController: NavHostController) {
         )
         TextButton(
             onClick = {
-                // Future Register Screen
+                navController.navigate(ROUTE_REGISTER)
             }
         ) {
             Text(

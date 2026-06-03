@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "400375322441",
+    "project_id": "kazilink-e4723",
+    "storage_bucket": "kazilink-e4723.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400375322441:android:b8ab15c2da5139c1bdec98",
+        "android_client_info": {
+          "package_name": "com.jabez.kazilink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVGTDI_sFQZdqWK8WASBE4lSZYg2r6Od8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

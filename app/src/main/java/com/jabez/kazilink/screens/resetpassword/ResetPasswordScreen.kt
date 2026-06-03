@@ -1,4 +1,4 @@
-package com.jabez.kazilink.screens.forgotpassword
+package com.jabez.kazilink.screens.resetpassword
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,29 +9,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.material3.TextButton
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import androidx.navigation.NavHostController
-import com.jabez.kazilink.navigation.ROUTE_RESET_PASSWORD
-import androidx.compose.material3.TextButton
+
 import com.jabez.kazilink.R
 import com.jabez.kazilink.screens.login.CourierPrime
 
 @Composable
-fun ForgotPasswordScreen(navController: NavHostController) {
+fun ResetPasswordScreen(navController: NavHostController) {
 
-    var email by remember { mutableStateOf("") }
+    var pin by remember { mutableStateOf("") }
+    var pinVerified by remember { mutableStateOf(false) }
+    var newPassword by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -52,45 +62,77 @@ fun ForgotPasswordScreen(navController: NavHostController) {
         Image(
             painter = painterResource(id = R.drawable.kazilogo),
             contentDescription = "KaziLink Logo",
-            modifier = Modifier.size(140.dp)
+            modifier = Modifier.size(100.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "FORGOT PASSWORD",
+            text = "RESET PASSWORD",
             fontFamily = CourierPrime,
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold
         )
+
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = "Enter your email address to receive a 6-digit password reset PIN.",
-            fontFamily = CourierPrime,
-            fontSize = 16.sp
+            text = "Enter the 6-digit PIN sent to your email",
+            fontFamily = CourierPrime
         )
-        var email by remember { mutableStateOf("") }
 
         Spacer(modifier = Modifier.height(20.dp))
 
         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email Address") }
+            value = pin,
+            onValueChange = { pin = it },
+            label = { Text("6-Digit PIN") }
         )
 
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         Button(
             onClick = {
-                navController.navigate(ROUTE_RESET_PASSWORD)
+                if (pin == "000000") {
+                    pinVerified = true
+                }
             }
         ) {
             Text(
-                text = "SEND PIN",
+                text = "ENTER",
                 fontFamily = CourierPrime
             )
+        }
+
+        if (!pinVerified) {
+
+            Text(
+                text = "Enter the 6-digit PIN sent to your email",
+                fontFamily = CourierPrime
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            OutlinedTextField(
+                value = pin,
+                onValueChange = { pin = it },
+                label = { Text("6-Digit PIN") }
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Button(
+                onClick = {
+                    if (pin == "000000") {
+                        pinVerified = true
+                    }
+                }
+            ) {
+                Text(
+                    text = "ENTER",
+                    fontFamily = CourierPrime
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -105,18 +147,5 @@ fun ForgotPasswordScreen(navController: NavHostController) {
                 fontFamily = CourierPrime
             )
         }
-
-        // Logo
-
-        // FORGOT PASSWORD title
-
-        // Description text
-
-        // Email field
-
-        // SEND PIN button
-
-        // Back to Login button
-
     }
 }

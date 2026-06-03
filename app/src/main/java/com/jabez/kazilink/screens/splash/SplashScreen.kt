@@ -32,7 +32,7 @@ val CourierPrime = FontFamily(
 fun SplashScreen(navController: androidx.navigation.NavHostController) {
 
     LaunchedEffect(Unit) {
-        delay(3000)
+        delay(2000)
         navController.navigate(ROUTE_LOGIN)
     }
 

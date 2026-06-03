@@ -7,6 +7,8 @@ import androidx.navigation.compose.rememberNavController
 import com.jabez.kazilink.screens.login.LoginScreen
 import com.jabez.kazilink.screens.splash.SplashScreen
 import com.jabez.kazilink.screens.forgotpassword.ForgotPasswordScreen
+import com.jabez.kazilink.screens.resetpassword.ResetPasswordScreen
+import com.jabez.kazilink.screens.register.RegisterScreen
 
 @Composable
 fun AppNavHost() {
@@ -29,6 +31,15 @@ fun AppNavHost() {
         composable(ROUTE_FORGOT_PASSWORD) {
             ForgotPasswordScreen(navController)
         }
+
+        composable(ROUTE_RESET_PASSWORD) {
+            ResetPasswordScreen(navController)
+        }
+
+        composable(ROUTE_REGISTER) {
+            RegisterScreen(navController)
+        }
+
 
     }
 }

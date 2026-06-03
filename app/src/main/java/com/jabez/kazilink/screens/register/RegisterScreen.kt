@@ -1,4 +1,4 @@
-package com.jabez.kazilink.screens.forgotpassword
+package com.jabez.kazilink.screens.register
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,26 +12,30 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.jabez.kazilink.navigation.ROUTE_RESET_PASSWORD
-import androidx.compose.material3.TextButton
 import com.jabez.kazilink.R
 import com.jabez.kazilink.screens.login.CourierPrime
 
 @Composable
-fun ForgotPasswordScreen(navController: NavHostController) {
+fun RegisterScreen(navController: NavHostController) {
 
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("") }
+    var county by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -49,51 +53,85 @@ fun ForgotPasswordScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Image(
             painter = painterResource(id = R.drawable.kazilogo),
             contentDescription = "KaziLink Logo",
-            modifier = Modifier.size(140.dp)
+            modifier = Modifier.size(100.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "FORGOT PASSWORD",
-            fontFamily = CourierPrime,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold
-        )
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = "Enter your email address to receive a 6-digit password reset PIN.",
+            text = "CREATE ACCOUNT",
             fontFamily = CourierPrime,
-            fontSize = 16.sp
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold
         )
-        var email by remember { mutableStateOf("") }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
+
+        OutlinedTextField(
+            value = firstName,
+            onValueChange = { firstName = it },
+            label = { Text("First Name") }
+        )
+
+        OutlinedTextField(
+            value = lastName,
+            onValueChange = { lastName = it },
+            label = { Text("Last Name") }
+        )
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Email Address") }
+            label = { Text("Email") }
         )
 
-        Spacer(modifier = Modifier.height(15.dp))
+        OutlinedTextField(
+            value = phone,
+            onValueChange = { phone = it },
+            label = { Text("Phone Number") }
+        )
+
+        OutlinedTextField(
+            value = county,
+            onValueChange = { county = it },
+            label = { Text("County") }
+        )
+
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") }
+        )
+
+        OutlinedTextField(
+            value = confirmPassword,
+            onValueChange = { confirmPassword = it },
+            label = { Text("Confirm Password") }
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
 
         Button(
             onClick = {
-                navController.navigate(ROUTE_RESET_PASSWORD)
+                // Registration logic later
             }
         ) {
             Text(
-                text = "SEND PIN",
+                text = "CREATE ACCOUNT",
                 fontFamily = CourierPrime
             )
         }
 
         Spacer(modifier = Modifier.height(10.dp))
+
+        Text(
+            text = "Already have an account?",
+            fontFamily = CourierPrime
+        )
 
         TextButton(
             onClick = {
@@ -101,22 +139,10 @@ fun ForgotPasswordScreen(navController: NavHostController) {
             }
         ) {
             Text(
-                text = "Back to Login",
-                fontFamily = CourierPrime
+                text = "Login",
+                fontFamily = CourierPrime,
+                fontWeight = FontWeight.Bold
             )
         }
-
-        // Logo
-
-        // FORGOT PASSWORD title
-
-        // Description text
-
-        // Email field
-
-        // SEND PIN button
-
-        // Back to Login button
-
     }
 }
