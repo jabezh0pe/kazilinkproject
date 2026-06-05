@@ -25,9 +25,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.jabez.kazilink.R
 import com.jabez.kazilink.screens.login.CourierPrime
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun RegisterScreen(navController: NavHostController) {
+
+    val auth = FirebaseAuth.getInstance()
 
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
@@ -117,7 +120,25 @@ fun RegisterScreen(navController: NavHostController) {
 
         Button(
             onClick = {
-                // Registration logic later
+
+                if (password == confirmPassword) {
+
+                    auth.createUserWithEmailAndPassword(
+                        email,
+                        password
+                    ).addOnCompleteListener { task ->
+
+                        if (task.isSuccessful) {
+
+                            println("Account Created Successfully")
+
+                        } else {
+
+                            println(task.exception?.message)
+
+                        }
+                    }
+                }
             }
         ) {
             Text(

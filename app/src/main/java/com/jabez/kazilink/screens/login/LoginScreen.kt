@@ -21,6 +21,7 @@ import com.jabez.kazilink.R
 import androidx.navigation.NavHostController
 import com.jabez.kazilink.navigation.ROUTE_FORGOT_PASSWORD
 import com.jabez.kazilink.navigation.ROUTE_REGISTER
+import com.google.firebase.auth.FirebaseAuth
 
 
 val CourierPrime = FontFamily(
@@ -30,6 +31,8 @@ val CourierPrime = FontFamily(
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
+
+    val auth = FirebaseAuth.getInstance()
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -96,16 +99,25 @@ fun LoginScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(4.dp))
 
         Button(
-            onClick = { }
-        ) {
-            Text("Login")
-        }
-        Spacer(modifier = Modifier.height(10.dp))
+            onClick = {
+                auth.signInWithEmailAndPassword(
+                    email,
+                    password
+                ).addOnCompleteListener { task ->
 
-        Text(
-            text = "Don't have an account?",
-            fontFamily = CourierPrime
-        )
+                    if (task.isSuccessful) {
+                        println("Login Successful")
+                    } else {
+                        println(task.exception?.message)
+                    }
+                }
+            }
+        ) {
+            Text(
+                text = "Login",
+                fontFamily = CourierPrime
+            )
+        }
         TextButton(
             onClick = {
                 navController.navigate(ROUTE_REGISTER)
